@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&#x5B89;&#x88DD;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h3 id="安裝">安裝</h3>
+<ul>
+<li>在 macOS 有 Homebrew 非常方便
+<ul>
+<li>brew install git</li>
+</ul>
+</li>
+<li>安裝之後，無論是在 Win 或 macOS，在應用程式 Git Bash 中，<br>
+都可以進入像是 Linux 一樣的 Bash 命令列程式</li>
+</ul>
+<hr>
+<ul>
+<li>which git
+<ul>
+<li>檢視 git 在哪裡？</li>
+<li>原本執行的 Git 的位置是在 /usr/bin/git/</li>
+<li>使用 Homebrew 安裝的 Git 執行的<br>
+位置改成了 /usr/local/bin/git/<br>
+這是 Homebrew 安裝所有套件預設的位置。</li>
+</ul>
+</li>
+<li>git --version
+<ul>
+<li>檢視使用版本</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="使用者設定">使用者設定</h3>
+<ul>
+<li>git config --list
+<ul>
+<li>檢視目前的設定</li>
+</ul>
+</li>
+<li>git config --global <a href="http://user.name">user.name</a> &quot;ChiaYao Chen&quot;
+<ul>
+<li>第一次執行 git 請設定使用者名稱</li>
+</ul>
+</li>
+<li>git config --global user.email &quot;<a href="mailto:chiayao.chen@gmail.com">chiayao.chen@gmail.com</a>&quot;
+<ul>
+<li>第一次執行 git 請設定使用者信箱</li>
+</ul>
+</li>
+<li>直接編輯 ~/.gitconfig 這個文字檔案也可以</li>
+<li>如果要在不同專案設定不同使用者與信箱，則把　--global 換成　--local 就可以了，例如
+<ul>
+<li>git config --local <a href="http://user.name">user.name</a> &quot;ChiaYao Chen&quot;</li>
+<li>git config --local user.email &quot;<a href="mailto:chiayao.chen@gmail.com">chiayao.chen@gmail.com</a>&quot;</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="開始使用">開始使用</h3>
+<ul>
+<li>git init
+<ul>
+<li>初始化當下的工作目錄，讓 git 對當下的工作目錄進行版本控制</li>
+<li>執行完之後就會建立一個 .git 目錄</li>
+<li>如果要解除版本控制，可以直接刪掉 .git 目錄</li>
+</ul>
+</li>
+<li>git status
+<ul>
+<li>查看目前工作目錄的 git 狀態</li>
+</ul>
+</li>
+<li>git add --all
+<ul>
+<li>把所有改變加入暫存區 Staging area，包括檔案的刪除等</li>
+</ul>
+</li>
+<li>git commit -m &quot;在這次的提交做了什麼事情&quot;
+<ul>
+<li>執行後就會把這次 Staging area 有記錄到的改變，放到 Repository 裡面</li>
+<li><strong>請注意</strong> 建立新的空目錄是無法被提交的，如果有需求，則可以故意在新的空目錄裡面隨意放一個空的檔案，例如
+<ul>
+<li>touch 空目錄/.gitKeepThisDir</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>git log
+<ul>
+<li>查看 Commit 的歷史記錄</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="救回檔案">救回檔案</h3>
+<ul>
+<li>如果誤刪檔案，但還沒提交到暫存區
+<ul>
+<li>git checkout 檔案名稱</li>
+<li>git checkout .
+<ul>
+<li>檔案名稱改為句點，則代表所有檔案</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果已經 commit 了
+<ul>
+<li>git reset HEAD^
+<ul>
+<li>每一個 ^ 符號代表回退一步</li>
+<li>這代表把 HEAD 退回前一個 commit</li>
+<li>如果是 HEAD^^ 則是退兩步</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="使用分支">使用分支</h3>
+<ul>
+<li>git branch
+<ul>
+<li>顯示有哪些分支，以及目前位置</li>
+</ul>
+</li>
+<li>git branch 分支名稱
+<ul>
+<li>新增分支，但這樣不會移動到新增的分支上</li>
+</ul>
+</li>
+<li>git branch -m 舊的分支名稱 新的分支名稱
+<ul>
+<li>更改分支名稱</li>
+</ul>
+</li>
+<li>git branch -d 想刪除的分支名稱
+<ul>
+<li>前提是要 fully merged 已完全合併的分支才可以刪</li>
+<li>如果參數改成 -D 則不管，可以強制刪除</li>
+</ul>
+</li>
+<li>git checkout 想切換過去的分支名稱
+<ul>
+<li>切換所在的分支位置</li>
+<li>前提是分支必須先存在</li>
+</ul>
+</li>
+<li>git checkout -b 新的分支名稱
+<ul>
+<li>建立新的分支並且切換過去</li>
+</ul>
+</li>
+<li>如果還沒 add 或 commit 就切換到其他分支
+<ul>
+<li>不要害怕，剛才所做的努力都還在，只有commit時會到不同地方</li>
+</ul>
+</li>
+<li>git merge 想要合併過來的分支名稱
+<ul>
+<li>已經合併過的分支，如果再也不要，也可以刪了</li>
+<li>如果合併發生衝突 conflict 可以使用
+<ul>
+<li>git checkout --ours 衝突的檔案名稱</li>
+<li>git checkout --theirs 衝突的檔案名稱</li>
+<li>來決定用我的檔案還是他的檔案</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="遠端協作">遠端協作</h3>
+<ul>
+<li>git remote add origin <a href="mailto:git@github.com">git@github.com</a>:倉庫位置
+<ul>
+<li>代表增加一個遠端節點</li>
+<li>origin 是後面遠端節點的代號，可以自己取其他名字</li>
+</ul>
+</li>
+<li>git push -u origin master
+<ul>
+<li>把我現在的 master 內容，推到 origin</li>
+<li>有加 -u 參數表示設定 upstream 這樣之後<br>
+偷懶打 git push 不加其他參數 也會進行一樣的動作</li>
+</ul>
+</li>
+<li>git fetch
+<ul>
+<li>從前面設定的遠端節點抓更新下來，並且放到新的分支裡</li>
+<li>通常新的分支名稱會叫做 origin/master</li>
+<li>後續想要合併可以打 git merge origin/master<br>
+才會跟現在的分支合併</li>
+</ul>
+</li>
+<li>git pull
+<ul>
+<li>直接自動做完 git fetch 與 git merge 的動作</li>
+<li>相當於從線上更新目前的分支</li>
+</ul>
+</li>
+<li>git clone <a href="mailto:git@github.com">git@github.com</a>:倉庫位置
+<ul>
+<li>看到有趣的專案，這個指令可以<br>
+把整個專案複製下來並且存在同名的目錄裡面</li>
+<li>若 clone 完成，之後想要更新，<br>
+則使用 git pull 即可</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="使用github放靜態網頁">使用GitHub放靜態網頁</h3>
+<ul>
+<li>基本說明在 <a href="https://pages.github.com/">https://pages.github.com/</a></li>
+<li>HelloWorld
+<ul>
+<li>創造一個專案名稱叫做 <a href="http://username.github.io">username.github.io</a></li>
+<li>git clone <a href="https://github.com/username/username.github.io">https://github.com/username/username.github.io</a></li>
+<li>進入自己電腦的專案資料夾創建 index.html</li>
+<li>其他一樣
+<ul>
+<li>git add --all</li>
+<li>git commit -m &quot;Initial commit&quot;</li>
+<li>git push -u origin main</li>
+</ul>
+</li>
+<li>然後網址 <a href="http://username.github.io">username.github.io</a> 就會開啟 index.html</li>
+</ul>
+</li>
+<li>如果想要獨立專案有自己的倉庫
+<ul>
+<li>先新增一個 repo 假設名字叫 projectX</li>
+<li>把 projectX 整個 git clone 到自己電腦資料夾</li>
+<li>建立 index.html</li>
+<li>一樣先 git add 與 git commit</li>
+<li>接著是重點</li>
+<li>git checkout -b gh-pages</li>
+<li>然後把 gh-pages 推回去</li>
+<li>git push -u origin gh-pages</li>
+<li>那麼在網址 <a href="http://username.github.io/projectX/">username.github.io/projectX/</a></li>
+<li>就是屬於這個倉庫的網頁了</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="ssh的問題造成無法上傳檔案">SSH的問題造成無法上傳檔案</h3>
+<ul>
+<li>在使用者的主目錄可以檢查看看
+<ul>
+<li>有沒有 .ssh 目錄</li>
+<li>有沒有 id_rsa 這個檔案</li>
+<li>有沒有 id_rsa.pub 這個檔案</li>
+</ul>
+</li>
+<li>如果有缺，則必須自己建立新的<br>
+ssh-keygen -t rsa -C &quot;<a href="mailto:chiayao.chen@gmail.com">chiayao.chen@gmail.com</a>&quot;
+<ul>
+<li>參數 -t 用以指定生成密鑰的類型</li>
+<li>參數 -C 用以註記</li>
+<li>參數 -f 用以指定生成密鑰的檔案名稱，預設是 id_rsa<br>
+私鑰為 id_rsa，公鑰為 id_rsa.pub</li>
+<li>其餘的設定過程都可以直接 enter 跳過</li>
+</ul>
+</li>
+<li>完成之後在 /Users/chiayao/.ssh 目錄下面應該可以找到<br>
+公鑰 id_rsa.pub</li>
+<li>在網頁 <a href="https://github.com/settings/keys">https://github.com/settings/keys</a> 裡面
+<ul>
+<li>按下 New SSH key</li>
+<li>open id_rsa.pub -e<br>
+把公鑰 id_rsa.pub 的內容複製貼上</li>
+<li>成功增加了這台電腦的 SSH key 了</li>
+</ul>
+</li>
+</ul>
+
+    </body>
+    </html>
